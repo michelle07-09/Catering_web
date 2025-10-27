@@ -1,487 +1,632 @@
-// Menu Data
+// ============================================
+// FOODEXPRESS CATERING - MAIN JAVASCRIPT
+// ============================================
+
+// Data Menu Catering
 const menuData = [
     {
         id: 1,
-        name: 'Paket Nasi Box Ekonomis',
-        category: 'paket',
+        name: 'Paket Nasi Box Ayam',
+        category: 'nasi-box',
         price: 25000,
-        description: 'Nasi putih, ayam goreng, sayur, sambal, kerupuk',
-        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop'
+        description: 'Nasi putih, ayam goreng/bakar, sayur, sambal, kerupuk',
+        image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop'
     },
     {
         id: 2,
-        name: 'Paket Nasi Box Standar',
-        category: 'paket',
-        price: 35000,
-        description: 'Nasi putih, ayam bakar, 2 sayur, sambal, kerupuk, buah',
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop'
+        name: 'Paket Nasi Box Ikan',
+        category: 'nasi-box',
+        price: 28000,
+        description: 'Nasi putih, ikan goreng/bakar, sayur, sambal, kerupuk',
+        image: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?w=400&h=300&fit=crop'
     },
     {
         id: 3,
-        name: 'Paket Nasi Box Premium',
-        category: 'paket',
-        price: 50000,
-        description: 'Nasi putih, rendang/ayam rica, 2 sayur, sambal, kerupuk, buah, dessert',
-        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop'
+        name: 'Paket Nasi Box Daging',
+        category: 'nasi-box',
+        price: 35000,
+        description: 'Nasi putih, rendang/empal, sayur, sambal, kerupuk',
+        image: 'https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=400&h=300&fit=crop'
     },
     {
         id: 4,
-        name: 'Paket Prasmanan 50 Pax',
-        category: 'paket',
-        price: 2500000,
-        description: 'Menu komplit untuk 50 orang: Nasi, 3 lauk, 3 sayur, buah, minuman',
-        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop'
+        name: 'Paket Tumpeng Mini',
+        category: 'tumpeng',
+        price: 150000,
+        description: 'Nasi kuning, ayam goreng, telur, urap, serundeng (untuk 5 orang)',
+        image: 'https://images.unsplash.com/photo-1596040033229-a0b44e04c4a1?w=400&h=300&fit=crop'
     },
     {
         id: 5,
-        name: 'Paket Snack Box Meeting',
-        category: 'paket',
-        price: 30000,
-        description: 'Sandwich, risoles, sus, kue basah, buah potong, air mineral',
-        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop'
+        name: 'Paket Tumpeng Sedang',
+        category: 'tumpeng',
+        price: 300000,
+        description: 'Nasi kuning, ayam goreng, telur, urap, serundeng (untuk 10 orang)',
+        image: 'https://images.unsplash.com/photo-1596040033229-a0b44e04c4a1?w=400&h=300&fit=crop'
     },
     {
         id: 6,
-        name: 'Nasi Putih',
-        category: 'makanan',
-        price: 5000,
-        description: 'Nasi putih pulen premium',
-        image: 'https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?w=400&h=300&fit=crop'
+        name: 'Paket Prasmanan 50 Pax',
+        category: 'prasmanan',
+        price: 1250000,
+        description: '3 lauk, 2 sayur, buah, nasi putih & kuning, kerupuk (50 orang)',
+        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop'
     },
     {
         id: 7,
-        name: 'Ayam Goreng Kremes',
-        category: 'makanan',
-        price: 18000,
-        description: 'Ayam goreng renyah dengan kremes gurih',
-        image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&h=300&fit=crop'
+        name: 'Paket Prasmanan 100 Pax',
+        category: 'prasmanan',
+        price: 2300000,
+        description: '4 lauk, 2 sayur, buah, nasi putih & kuning, kerupuk (100 orang)',
+        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop'
     },
     {
         id: 8,
-        name: 'Rendang Daging',
-        category: 'makanan',
-        price: 28000,
-        description: 'Rendang daging sapi empuk bumbu tradisional',
-        image: 'https://images.unsplash.com/photo-1595777216528-071e0127ccbf?w=400&h=300&fit=crop'
+        name: 'Paket Snack Box A',
+        category: 'snack',
+        price: 15000,
+        description: 'Risoles, lemper, sus, kue basah, air mineral',
+        image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'
     },
     {
         id: 9,
-        name: 'Ikan Bakar',
-        category: 'makanan',
-        price: 25000,
-        description: 'Ikan segar bakar dengan bumbu kecap',
-        image: 'https://images.unsplash.com/photo-1580959375944-1ab5ae4fc5bb?w=400&h=300&fit=crop'
+        name: 'Paket Snack Box B',
+        category: 'snack',
+        price: 20000,
+        description: 'Pastel, kroket, tahu isi, kue basah, juice',
+        image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'
     },
     {
         id: 10,
-        name: 'Sayur Asem',
-        category: 'makanan',
-        price: 8000,
-        description: 'Sayur asem segar dengan labu, kacang panjang',
-        image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&fit=crop'
+        name: 'Paket Coffee Break',
+        category: 'snack',
+        price: 25000,
+        description: 'Kue kering, roti, buah potong, kopi/teh',
+        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop'
     },
     {
         id: 11,
-        name: 'Capcay',
-        category: 'makanan',
-        price: 12000,
-        description: 'Capcay sayuran segar dengan bakso',
-        image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop'
+        name: 'Nasi Kuning Ulang Tahun',
+        category: 'tumpeng',
+        price: 200000,
+        description: 'Nasi kuning box 20 pax, ayam goreng, telur, urap',
+        image: 'https://images.unsplash.com/photo-1596040033229-a0b44e04c4a1?w=400&h=300&fit=crop'
     },
     {
         id: 12,
-        name: 'Es Teh Manis',
-        category: 'minuman',
-        price: 5000,
-        description: 'Es teh manis segar',
-        image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop'
-    },
-    {
-        id: 13,
-        name: 'Es Jeruk',
-        category: 'minuman',
-        price: 8000,
-        description: 'Es jeruk peras segar',
-        image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop'
-    },
-    {
-        id: 14,
-        name: 'Air Mineral',
-        category: 'minuman',
-        price: 3000,
-        description: 'Air mineral kemasan 600ml',
-        image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&h=300&fit=crop'
-    },
-    {
-        id: 15,
-        name: 'Jus Buah',
-        category: 'minuman',
-        price: 12000,
-        description: 'Jus buah segar pilihan (alpukat/mangga/jambu)',
-        image: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=300&fit=crop'
-    },
-    {
-        id: 16,
-        name: 'Risoles Mayo',
-        category: 'snack',
-        price: 5000,
-        description: 'Risoles isi ragout ayam dengan mayo',
-        image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop'
-    },
-    {
-        id: 17,
-        name: 'Lemper Ayam',
-        category: 'snack',
-        price: 4000,
-        description: 'Lemper ketan isi ayam suwir',
-        image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&h=300&fit=crop'
-    },
-    {
-        id: 18,
-        name: 'Pastel Goreng',
-        category: 'snack',
-        price: 4500,
-        description: 'Pastel goreng isi sayuran',
-        image: 'https://images.unsplash.com/photo-1601314002592-357d6f2d5c5d?w=400&h=300&fit=crop'
-    },
-    {
-        id: 19,
-        name: 'Kue Sus',
-        category: 'snack',
-        price: 6000,
-        description: 'Kue sus isi vla vanila',
-        image: 'https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=400&h=300&fit=crop'
-    },
-    {
-        id: 20,
-        name: 'Brownies Coklat',
-        category: 'snack',
-        price: 7000,
-        description: 'Brownies coklat lembut premium',
-        image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop'
+        name: 'Paket Nasi Box Premium',
+        category: 'nasi-box',
+        price: 45000,
+        description: 'Nasi putih, ayam bakar madu, sayur, sambal, buah, kerupuk, air mineral',
+        image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop'
     }
 ];
 
-// Cart State
-let cart = [];
-let currentCategory = 'all';
+// ============================================
+// STATE MANAGEMENT
+// ============================================
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let currentCategory = 'semua';
 
-// Initialize
-document.addEventListener('DOMContentLoaded', function() {
-    displayMenu();
-    updateCartDisplay();
+// ============================================
+// USER AUTHENTICATION
+// ============================================
+function checkAuth() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     
-    // Set minimum date for delivery
-    const today = new Date();
-    today.setDate(today.getDate() + 1); // Minimum next day
-    document.getElementById('deliveryDate').min = today.toISOString().split('T')[0];
-});
+    if (!loggedInUser) {
+        window.location.href = 'login.html';
+        return null;
+    }
+    
+    return loggedInUser;
+}
 
-// Display Menu
-function displayMenu(filterText = '') {
+function displayUserInfo() {
+    const user = checkAuth();
+    if (user) {
+        const userNameElement = document.getElementById('userName');
+        if (userNameElement) {
+            userNameElement.textContent = user.name;
+        }
+    }
+}
+
+function handleLogout() {
+    if (confirm('Yakin ingin logout?')) {
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('cart');
+        window.location.href = 'login.html';
+    }
+}
+
+// ============================================
+// MENU DISPLAY
+// ============================================
+function displayMenu(category = 'semua') {
     const menuGrid = document.getElementById('menuGrid');
-    let filteredMenu = menuData;
-
-    // Filter by category
-    if (currentCategory !== 'all') {
-        filteredMenu = filteredMenu.filter(item => item.category === currentCategory);
-    }
-
-    // Filter by search text
-    if (filterText) {
-        filteredMenu = filteredMenu.filter(item => 
-            item.name.toLowerCase().includes(filterText.toLowerCase()) ||
-            item.description.toLowerCase().includes(filterText.toLowerCase())
-        );
-    }
-
-    menuGrid.innerHTML = '';
-
+    if (!menuGrid) return;
+    
+    currentCategory = category;
+    
+    const filteredMenu = category === 'semua' 
+        ? menuData 
+        : menuData.filter(item => item.category === category);
+    
     if (filteredMenu.length === 0) {
-        menuGrid.innerHTML = `
-            <div class="empty-state" style="grid-column: 1/-1;">
-                <div class="empty-state-icon">🔍</div>
-                <h3>Menu tidak ditemukan</h3>
-                <p>Coba kata kunci lain atau lihat kategori lainnya</p>
-            </div>
-        `;
+        menuGrid.innerHTML = '<div class="empty-state"><h3>Tidak ada menu di kategori ini</h3></div>';
         return;
     }
-
-    filteredMenu.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'menu-card';
-        card.innerHTML = `
+    
+    menuGrid.innerHTML = filteredMenu.map(item => `
+        <div class="menu-card" data-id="${item.id}">
             <div class="menu-image">
-                <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="${item.image}" alt="${item.name}" loading="lazy">
             </div>
             <div class="menu-info">
                 <div class="menu-name">${item.name}</div>
                 <div class="menu-desc">${item.description}</div>
                 <div class="menu-footer">
-                    <div class="menu-price">${formatRupiah(item.price)}</div>
+                    <div class="menu-price">Rp ${item.price.toLocaleString('id-ID')}</div>
                     <button class="add-to-cart-btn" onclick="addToCart(${item.id})">
-                        + Keranjang
+                        🛒 Pesan
                     </button>
                 </div>
             </div>
-        `;
-        menuGrid.appendChild(card);
-    });
+        </div>
+    `).join('');
 }
 
-// Filter by Category
-function filterCategory(category) {
-    currentCategory = category;
-    
-    // Update active button
-    document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    event.target.classList.add('active');
-
-    // Display filtered menu
-    displayMenu(document.getElementById('searchInput').value);
-}
-
-// Search Menu
+// ============================================
+// SEARCH FUNCTIONALITY
+// ============================================
 function searchMenu() {
-    const searchText = document.getElementById('searchInput').value;
-    displayMenu(searchText);
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const menuGrid = document.getElementById('menuGrid');
+    
+    if (searchTerm === '') {
+        displayMenu(currentCategory);
+        return;
+    }
+    
+    const filteredMenu = menuData.filter(item => 
+        item.name.toLowerCase().includes(searchTerm) ||
+        item.description.toLowerCase().includes(searchTerm)
+    );
+    
+    if (filteredMenu.length === 0) {
+        menuGrid.innerHTML = '<div class="empty-state"><h3>Menu tidak ditemukan</h3><p>Coba kata kunci lain</p></div>';
+        return;
+    }
+    
+    menuGrid.innerHTML = filteredMenu.map(item => `
+        <div class="menu-card">
+            <div class="menu-image">
+                <img src="${item.image}" alt="${item.name}" loading="lazy">
+            </div>
+            <div class="menu-info">
+                <div class="menu-name">${item.name}</div>
+                <div class="menu-desc">${item.description}</div>
+                <div class="menu-footer">
+                    <div class="menu-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${item.id})">
+                        🛒 Pesan
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
 }
 
-// Add to Cart
+// ============================================
+// CATEGORY FILTER
+// ============================================
+function setupCategoryFilter() {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            categoryButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const category = this.dataset.category;
+            displayMenu(category);
+        });
+    });
+}
+
+// ============================================
+// CART MANAGEMENT
+// ============================================
 function addToCart(itemId) {
     const item = menuData.find(m => m.id === itemId);
     if (!item) return;
-
+    
     const existingItem = cart.find(c => c.id === itemId);
     
     if (existingItem) {
-        existingItem.quantity++;
+        existingItem.quantity += 1;
     } else {
         cart.push({
             ...item,
             quantity: 1
         });
     }
-
-    updateCartDisplay();
     
-    // Show notification
-    showNotification('✅ Item ditambahkan ke keranjang!');
+    saveCart();
+    updateCartUI();
+    showNotification('success', 'Ditambahkan!', `${item.name} ditambahkan ke keranjang`);
 }
 
-// Update Cart Display
-function updateCartDisplay() {
-    const cartItems = document.getElementById('cartItems');
-    const cartBadge = document.getElementById('cartBadge');
-    const cartTotal = document.getElementById('cartTotal');
+function removeFromCart(itemId) {
+    cart = cart.filter(item => item.id !== itemId);
+    saveCart();
+    updateCartUI();
+}
 
-    // Update badge
+function updateQuantity(itemId, change) {
+    const item = cart.find(c => c.id === itemId);
+    if (!item) return;
+    
+    item.quantity += change;
+    
+    if (item.quantity <= 0) {
+        removeFromCart(itemId);
+    } else {
+        saveCart();
+        updateCartUI();
+    }
+}
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function updateCartUI() {
+    updateCartBadge();
+    updateCartSidebar();
+}
+
+function updateCartBadge() {
+    const cartBadge = document.getElementById('cartBadge');
+    if (!cartBadge) return;
+    
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartBadge.textContent = totalItems;
+    cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+}
 
-    // Update cart items
+function updateCartSidebar() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartTotalElement = document.getElementById('cartTotal');
+    
+    if (!cartItemsContainer || !cartTotalElement) return;
+    
     if (cart.length === 0) {
-        cartItems.innerHTML = `
-            <div class="empty-state">
-                <div class="empty-state-icon">🛒</div>
-                <p>Keranjang belanja kosong</p>
-            </div>
-        `;
-        cartTotal.textContent = formatRupiah(0);
+        cartItemsContainer.innerHTML = '<div class="empty-state"><h3>Keranjang Kosong</h3><p>Belum ada pesanan</p></div>';
+        cartTotalElement.textContent = 'Rp 0';
         return;
     }
-
-    cartItems.innerHTML = '';
-    let total = 0;
-
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
+    
+    cartItemsContainer.innerHTML = cart.map(item => `
+        <div class="cart-item">
             <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                <img src="${item.image}" alt="${item.name}">
             </div>
             <div class="cart-item-info">
                 <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-price">${formatRupiah(item.price)}</div>
+                <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
                 <div class="quantity-controls">
-                    <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                    <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
                     <span>${item.quantity}</span>
                     <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
                 </div>
             </div>
             <button class="remove-item" onclick="removeFromCart(${item.id})">🗑️</button>
-        `;
-        cartItems.appendChild(cartItem);
-    });
-
-    cartTotal.textContent = formatRupiah(total);
+        </div>
+    `).join('');
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotalElement.textContent = `Rp ${total.toLocaleString('id-ID')}`;
 }
 
-// Update Quantity
-function updateQuantity(itemId, change) {
-    const item = cart.find(c => c.id === itemId);
-    if (!item) return;
-
-    item.quantity += change;
-
-    if (item.quantity <= 0) {
-        removeFromCart(itemId);
-    } else {
-        updateCartDisplay();
-    }
-}
-
-// Remove from Cart
-function removeFromCart(itemId) {
-    cart = cart.filter(c => c.id !== itemId);
-    updateCartDisplay();
-    showNotification('🗑️ Item dihapus dari keranjang');
-}
-
-// Toggle Cart
 function toggleCart() {
     const cartSidebar = document.getElementById('cartSidebar');
-    cartSidebar.classList.toggle('open');
+    if (cartSidebar) {
+        cartSidebar.classList.toggle('open');
+    }
 }
 
-// Show Checkout
-function showCheckout() {
+function closeCart() {
+    const cartSidebar = document.getElementById('cartSidebar');
+    if (cartSidebar) {
+        cartSidebar.classList.remove('open');
+    }
+}
+
+// ============================================
+// CHECKOUT
+// ============================================
+function openCheckoutModal() {
     if (cart.length === 0) {
-        alert('Keranjang belanja masih kosong!');
+        showNotification('error', 'Keranjang Kosong', 'Tambahkan menu terlebih dahulu');
         return;
     }
-
+    
     const modal = document.getElementById('checkoutModal');
-    const orderSummary = document.getElementById('orderSummary');
+    if (!modal) return;
+    
+    const user = checkAuth();
+    if (!user) return;
+    
+    // Pre-fill form dengan data user
+    document.getElementById('customerName').value = user.name;
+    document.getElementById('customerPhone').value = user.phone || '';
+    document.getElementById('customerEmail').value = user.email;
+    
+    // Display order summary
+    updateOrderSummary();
+    
+    modal.classList.add('active');
+    closeCart();
+}
 
-    // Generate order summary
-    let summaryHTML = '<h3>Ringkasan Pesanan</h3>';
-    let subtotal = 0;
-
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        summaryHTML += `
-            <div class="summary-row">
-                <span>${item.name} (${item.quantity}x)</span>
-                <span>${formatRupiah(itemTotal)}</span>
-            </div>
-        `;
-    });
-
-    const deliveryFee = 10000;
+function updateOrderSummary() {
+    const summaryContainer = document.getElementById('orderSummaryItems');
+    if (!summaryContainer) return;
+    
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const deliveryFee = 15000;
     const total = subtotal + deliveryFee;
-
-    summaryHTML += `
+    
+    summaryContainer.innerHTML = `
+        ${cart.map(item => `
+            <div class="summary-row">
+                <span>${item.name} (x${item.quantity})</span>
+                <span>Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</span>
+            </div>
+        `).join('')}
         <div class="summary-row">
             <span>Subtotal</span>
-            <span>${formatRupiah(subtotal)}</span>
+            <span>Rp ${subtotal.toLocaleString('id-ID')}</span>
         </div>
         <div class="summary-row">
             <span>Biaya Pengiriman</span>
-            <span>${formatRupiah(deliveryFee)}</span>
+            <span>Rp ${deliveryFee.toLocaleString('id-ID')}</span>
         </div>
         <div class="summary-row summary-total">
             <span>Total</span>
-            <span>${formatRupiah(total)}</span>
+            <span>Rp ${total.toLocaleString('id-ID')}</span>
         </div>
     `;
-
-    orderSummary.innerHTML = summaryHTML;
-    modal.classList.add('active');
-    toggleCart(); // Close cart sidebar
 }
 
-// Close Checkout
-function closeCheckout() {
+function closeCheckoutModal() {
     const modal = document.getElementById('checkoutModal');
-    modal.classList.remove('active');
-    document.getElementById('checkoutForm').reset();
-}
-
-// Handle Checkout Form Submit
-document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Get form data
-    const orderData = {
-        orderNumber: 'ORD-' + Date.now(),
-        customerName: document.getElementById('customerName').value,
-        customerPhone: document.getElementById('customerPhone').value,
-        customerEmail: document.getElementById('customerEmail').value,
-        deliveryAddress: document.getElementById('deliveryAddress').value,
-        deliveryDate: document.getElementById('deliveryDate').value,
-        deliveryTime: document.getElementById('deliveryTime').value,
-        paymentMethod: document.getElementById('paymentMethod').value,
-        orderNotes: document.getElementById('orderNotes').value,
-        items: cart,
-        total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 10000,
-        createdAt: new Date().toISOString()
-    };
-
-    // Save to local storage (simulating database)
-    let orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    orders.push(orderData);
-    localStorage.setItem('orders', JSON.stringify(orders));
-
-    // Show success modal
-    document.getElementById('orderNumber').textContent = 'No. Pesanan: ' + orderData.orderNumber;
-    document.getElementById('checkoutModal').classList.remove('active');
-    document.getElementById('successModal').classList.add('active');
-
-    // Clear cart
-    cart = [];
-    updateCartDisplay();
-    document.getElementById('checkoutForm').reset();
-});
-
-// Close Success Modal
-function closeSuccessModal() {
-    document.getElementById('successModal').classList.remove('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Show Notification
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #333;
-        color: white;
-        padding: 15px 25px;
-        border-radius: 10px;
-        z-index: 9999;
-        animation: slideIn 0.3s ease-out;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    `;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease-out';
-        setTimeout(() => notification.remove(), 300);
-    }, 2000);
-}
-
-// Format Rupiah
-function formatRupiah(number) {
-    return 'Rp ' + number.toLocaleString('id-ID');
-}
-
-// Section Navigation
-function showSection(section) {
-    if (section === 'menu') {
-        document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-    } else if (section === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (modal) {
+        modal.classList.remove('active');
     }
 }
+
+function processCheckout(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = {
+        customerName: form.customerName.value.trim(),
+        customerPhone: form.customerPhone.value.trim(),
+        customerEmail: form.customerEmail.value.trim(),
+        deliveryAddress: form.deliveryAddress.value.trim(),
+        deliveryDate: form.deliveryDate.value,
+        deliveryTime: form.deliveryTime.value,
+        notes: form.notes.value.trim(),
+        paymentMethod: form.paymentMethod.value
+    };
+    
+    // Validation
+    if (!formData.customerName || !formData.customerPhone || !formData.deliveryAddress || 
+        !formData.deliveryDate || !formData.deliveryTime || !formData.paymentMethod) {
+        showNotification('error', 'Data Tidak Lengkap', 'Mohon lengkapi semua field yang wajib diisi');
+        return;
+    }
+    
+    // Generate order number
+    const orderNumber = 'FE' + Date.now();
+    
+    // Calculate totals
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const deliveryFee = 15000;
+    const total = subtotal + deliveryFee;
+    
+    // Create order object
+    const order = {
+        orderNumber,
+        ...formData,
+        items: cart,
+        subtotal,
+        deliveryFee,
+        total,
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    };
+    
+    // Save order to localStorage
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    
+    // Show success message
+    showOrderSuccess(orderNumber);
+    
+    // Clear cart
+    cart = [];
+    saveCart();
+    updateCartUI();
+    
+    // Reset form
+    form.reset();
+}
+
+function showOrderSuccess(orderNumber) {
+    const modal = document.getElementById('checkoutModal');
+    const modalBody = modal.querySelector('.modal-body');
+    
+    modalBody.innerHTML = `
+        <div class="success-message">
+            <div class="success-icon">✅</div>
+            <h2>Pesanan Berhasil!</h2>
+            <p class="order-number">Nomor Pesanan: ${orderNumber}</p>
+            <p>Terima kasih atas pesanan Anda. Kami akan segera menghubungi Anda untuk konfirmasi.</p>
+            <p style="margin-top: 20px; color: #666;">
+                Silakan lakukan pembayaran melalui metode yang Anda pilih. 
+                Tim kami akan mengirimkan detail pembayaran via WhatsApp.
+            </p>
+            <button class="btn btn-primary" onclick="closeCheckoutModal()" style="margin-top: 30px; width: auto; padding: 15px 50px;">
+                Tutup
+            </button>
+        </div>
+    `;
+}
+
+// ============================================
+// NOTIFICATION SYSTEM
+// ============================================
+function showNotification(type, title, message) {
+    const notifContainer = document.getElementById('notification');
+    if (!notifContainer) {
+        // Create notification container if not exists
+        const notif = document.createElement('div');
+        notif.id = 'notification';
+        notif.className = 'notification';
+        notif.innerHTML = `
+            <div class="notification-title" id="notifTitle"></div>
+            <div class="notification-message" id="notifMessage"></div>
+        `;
+        document.body.appendChild(notif);
+    }
+    
+    const notif = document.getElementById('notification');
+    const notifTitle = document.getElementById('notifTitle');
+    const notifMessage = document.getElementById('notifMessage');
+    
+    notif.className = `notification ${type} show`;
+    notifTitle.textContent = title;
+    notifMessage.textContent = message;
+    
+    setTimeout(() => {
+        notif.classList.remove('show');
+    }, 3500);
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Check authentication
+    displayUserInfo();
+    
+    // Setup logout button
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+    }
+    
+    // Display initial menu
+    displayMenu('semua');
+    
+    // Setup category filter
+    setupCategoryFilter();
+    
+    // Setup search
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchBtn) {
+        searchBtn.addEventListener('click', searchMenu);
+    }
+    
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchMenu();
+            }
+        });
+    }
+    
+    // Setup cart
+    const cartIcon = document.getElementById('cartIcon');
+    const closeCartBtn = document.getElementById('closeCart');
+    
+    if (cartIcon) {
+        cartIcon.addEventListener('click', toggleCart);
+    }
+    
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', closeCart);
+    }
+    
+    // Setup checkout
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const cancelCheckoutBtn = document.getElementById('cancelCheckout');
+    
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', openCheckoutModal);
+    }
+    
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', processCheckout);
+    }
+    
+    if (cancelCheckoutBtn) {
+        cancelCheckoutBtn.addEventListener('click', closeCheckoutModal);
+    }
+    
+    // Close modal when clicking outside
+    const modal = document.getElementById('checkoutModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeCheckoutModal();
+            }
+        });
+    }
+    
+    // Update cart UI
+    updateCartUI();
+    
+    // Set minimum date for delivery (tomorrow)
+    const deliveryDateInput = document.getElementById('deliveryDate');
+    if (deliveryDateInput) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        deliveryDateInput.min = tomorrow.toISOString().split('T')[0];
+    }
+});
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+function formatCurrency(amount) {
+    return `Rp ${amount.toLocaleString('id-ID')}`;
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('id-ID', options);
+}
+
+// ============================================
+// EXPORT FUNCTIONS FOR GLOBAL ACCESS
+// ============================================
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.updateQuantity = updateQuantity;
+window.toggleCart = toggleCart;
+window.closeCart = closeCart;
+window.openCheckoutModal = openCheckoutModal;
+window.closeCheckoutModal = closeCheckoutModal;
+window.handleLogout = handleLogout;

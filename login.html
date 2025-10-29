@@ -3,390 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodExpress - Menu</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login - FoodExpress</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f36d44 0%, #e65c3b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #f36d44 0%, #e65c3b 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .login-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #eeeeee;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: none;
+        }
+
+        .tab.active {
+            background: white;
+            color: #f36d44;
+            border-bottom: 3px solid #f36d44;
+        }
+
+        .tab:hover {
+            background: #f0f0f0;
+        }
+
+        .form-container {
+            padding: 40px 30px;
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eeeeee;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f36d44;
+            box-shadow: 0 0 0 3px rgba(243, 109, 68, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #f36d44 0%, #e65c3b 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(243, 109, 68, 0.3);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .form-footer a {
+            color: #f36d44;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            animation: slideIn 0.3s ease;
+            z-index: 1000;
+            max-width: 350px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        .notification.success {
+            border-left: 5px solid #27ae60;
+        }
+
+        .notification.error {
+            border-left: 5px solid #e74c3c;
+        }
+
+        .notification h3 {
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .notification.success h3 {
+            color: #27ae60;
+        }
+
+        .notification.error h3 {
+            color: #e74c3c;
+        }
+
+        .notification p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .login-header h1 {
+                font-size: 2em;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="header-top">
-            <div class="container">
-                <div class="contact-info">📞 0812-3456-7890 | 📧 info@foodexpress.com</div>
-                <div class="user-info">
-                    <span class="user-name" id="userName">User</span>
-                    <button class="logout-btn" id="logoutBtn">Logout</button>
-                </div>
-            </div>
-        </div>
-        <nav>
-            <div class="container">
-                <div class="logo">🍽️ FoodExpress</div>
-                <ul class="nav-menu">
-                    <li><a href="#home">Beranda</a></li>
-                    <li><a href="#menu">Menu</a></li>
-                </ul>
-                <div class="cart-icon" id="cartIcon">
-                    🛒
-                    <span class="cart-badge" id="cartBadge">0</span>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Pesan Makanan Favorit Anda</h1>
-            <p>Catering terbaik dengan kualitas premium</p>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Cari menu...">
-                <button id="searchBtn">🔍 Cari</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="category-filter">
-        <div class="container">
-            <div class="category-buttons" id="categoryButtons">
-                <button class="category-btn active" data-category="all">Semua Menu</button>
-                <button class="category-btn" data-category="paket">Paket Catering</button>
-                <button class="category-btn" data-category="makanan">Makanan</button>
-                <button class="category-btn" data-category="minuman">Minuman</button>
-                <button class="category-btn" data-category="snack">Snack</button>
-            </div>
-        </div>
+    <div class="notification" id="notification">
+        <h3 id="notificationTitle">Notifikasi</h3>
+        <p id="notificationMessage">Pesan notifikasi</p>
     </div>
 
-    <section class="menu-section" id="menu">
-        <div class="container">
-            <h2 class="section-title">Menu Kami</h2>
-            <div class="menu-grid" id="menuGrid"></div>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>🍽️ FoodExpress</h1>
+            <p>Catering Online Terpercaya</p>
         </div>
-    </section>
 
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h2>🛒 Keranjang Belanja</h2>
-            <button class="close-cart" id="closeCart">✕</button>
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('login')">Login</button>
+            <button class="tab" onclick="switchTab('signup')">Sign Up</button>
         </div>
-        <div class="cart-items" id="cartItems"></div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotal">Rp 0</span>
-            </div>
-            <button class="checkout-btn" id="checkoutBtn">Checkout</button>
-        </div>
-    </div>
 
-    <div class="modal" id="checkoutModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>📝 Form Pemesanan</h2>
-            </div>
-            <div class="modal-body">
-                <div class="order-summary" id="orderSummary"></div>
-                <form id="checkoutForm">
+        <div class="form-container">
+            <div class="form-content active" id="loginForm">
+                <form onsubmit="handleLogin(event)">
                     <div class="form-group">
-                        <label>Nama Lengkap *</label>
-                        <input type="text" id="customerName" required>
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="contoh@email.com" required>
                     </div>
                     <div class="form-group">
-                        <label>No. WhatsApp *</label>
-                        <input type="tel" id="customerPhone" required>
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Masukkan password" required>
                     </div>
-                    <div class="form-group">
-                        <label>Alamat Pengiriman *</label>
-                        <textarea id="deliveryAddress" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Tanggal Pengiriman *</label>
-                        <input type="date" id="deliveryDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Waktu Pengiriman *</label>
-                        <select id="deliveryTime" required>
-                            <option value="">Pilih Waktu</option>
-                            <option value="08:00-10:00">08:00 - 10:00</option>
-                            <option value="10:00-12:00">10:00 - 12:00</option>
-                            <option value="12:00-14:00">12:00 - 14:00</option>
-                        </select>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-secondary" id="cancelCheckout">Batal</button>
-                        <button type="submit" class="btn btn-primary">Konfirmasi Pesanan</button>
-                    </div>
+                    <button type="submit" class="btn-submit">Login</button>
                 </form>
+                <div class="form-footer">
+                    Belum punya akun? <a onclick="switchTab('signup')">Daftar Sekarang</a>
+                </div>
+            </div>
+
+            <div class="form-content" id="signupForm">
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label for="signupName">Nama Lengkap</label>
+                        <input type="text" id="signupName" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" placeholder="contoh@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPhone">No. HP</label>
+                        <input type="tel" id="signupPhone" placeholder="081234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Minimal 6 karakter" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Konfirmasi Password</label>
+                        <input type="password" id="signupConfirmPassword" placeholder="Ulangi password" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Daftar Sekarang</button>
+                </form>
+                <div class="form-footer">
+                    Sudah punya akun? <a onclick="switchTab('login')">Login</a>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="modal-body success-message">
-                <div class="success-icon">✅</div>
-                <h2>Pesanan Berhasil!</h2>
-                <div class="order-number" id="orderNumber"></div>
-                <p>Terima kasih atas pesanan Anda</p>
-                <button class="btn btn-primary" id="closeSuccess">Kembali</button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>🍽️ FoodExpress</h3>
-                    <p>Catering terpercaya</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Kontak</h3>
-                    <p>📞 0812-3456-7890</p>
-                    <p>📧 info@foodexpress.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 FoodExpress</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (!loggedInUser) {
-            window.location.href = 'login.html';
-        }
-
-        const currentUser = JSON.parse(loggedInUser);
-        document.getElementById('userName').textContent = currentUser.name;
-
-        const menuData = [
-            { id: 1, name: 'Paket Nasi Box Ekonomis', category: 'paket', price: 25000, description: 'Nasi, ayam, sayur', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400' },
-            { id: 2, name: 'Paket Nasi Box Standar', category: 'paket', price: 35000, description: 'Nasi, ayam bakar, sayur, buah', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400' },
-            { id: 3, name: 'Paket Nasi Box Premium', category: 'paket', price: 50000, description: 'Nasi, rendang, sayur, buah, dessert', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400' },
-            { id: 4, name: 'Ayam Goreng Kremes', category: 'makanan', price: 18000, description: 'Ayam goreng renyah', image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400' },
-            { id: 5, name: 'Rendang Daging', category: 'makanan', price: 28000, description: 'Rendang sapi empuk', image: 'https://images.unsplash.com/photo-1595777216528-071e0127ccbf?w=400' },
-            { id: 6, name: 'Es Teh Manis', category: 'minuman', price: 5000, description: 'Es teh segar', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400' },
-            { id: 7, name: 'Es Jeruk', category: 'minuman', price: 8000, description: 'Es jeruk peras', image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400' },
-            { id: 8, name: 'Risoles Mayo', category: 'snack', price: 5000, description: 'Risoles isi ayam', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' }
-        ];
-
-        let cart = [];
-        let currentCategory = 'all';
-
-        function displayMenu() {
-            const menuGrid = document.getElementById('menuGrid');
-            const searchText = document.getElementById('searchInput').value.toLowerCase();
+        function switchTab(tab) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('active'));
             
-            let filteredMenu = menuData.filter(item => {
-                const matchCategory = currentCategory === 'all' || item.category === currentCategory;
-                const matchSearch = item.name.toLowerCase().includes(searchText) || 
-                                  item.description.toLowerCase().includes(searchText);
-                return matchCategory && matchSearch;
-            });
-
-            menuGrid.innerHTML = '';
-            
-            filteredMenu.forEach(item => {
-                const card = `
-                    <div class="menu-card">
-                        <div class="menu-image">
-                            <img src="${item.image}" alt="${item.name}">
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-name">${item.name}</div>
-                            <div class="menu-desc">${item.description}</div>
-                            <div class="menu-footer">
-                                <div class="menu-price">Rp ${item.price.toLocaleString('id-ID')}</div>
-                                <button class="add-to-cart-btn" onclick="addToCart(${item.id})">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                menuGrid.innerHTML += card;
-            });
-        }
-
-        document.getElementById('categoryButtons').addEventListener('click', function(e) {
-            if (e.target.classList.contains('category-btn')) {
-                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-                currentCategory = e.target.dataset.category;
-                displayMenu();
-            }
-        });
-
-        document.getElementById('searchBtn').addEventListener('click', displayMenu);
-        document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') displayMenu();
-        });
-
-        function addToCart(itemId) {
-            const item = menuData.find(m => m.id === itemId);
-            const existingItem = cart.find(c => c.id === itemId);
-            
-            if (existingItem) {
-                existingItem.quantity++;
+            if (tab === 'login') {
+                tabs[0].classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+                document.getElementById('signupForm').classList.remove('active');
             } else {
-                cart.push({ ...item, quantity: 1 });
+                tabs[1].classList.add('active');
+                document.getElementById('signupForm').classList.add('active');
+                document.getElementById('loginForm').classList.remove('active');
             }
-            
-            updateCartDisplay();
-            alert(`${item.name} ditambahkan ke keranjang!`);
         }
 
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cartItems');
-            const cartBadge = document.getElementById('cartBadge');
-            const cartTotal = document.getElementById('cartTotal');
+        function showNotification(type, title, message) {
+            const notification = document.getElementById('notification');
+            const notificationTitle = document.getElementById('notificationTitle');
+            const notificationMessage = document.getElementById('notificationMessage');
 
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartBadge.textContent = totalItems;
+            notification.className = 'notification show ' + type;
+            notificationTitle.textContent = title;
+            notificationMessage.textContent = message;
 
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-state"><p>Keranjang kosong</p></div>';
-                cartTotal.textContent = 'Rp 0';
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3500);
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showNotification('error', 'Data Tidak Lengkap', 'Mohon isi semua field');
                 return;
             }
 
-            let total = 0;
-            cartItems.innerHTML = '';
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
 
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-
-                const cartItem = `
-                    <div class="cart-item">
-                        <div class="cart-item-image">
-                            <img src="${item.image}" alt="${item.name}">
-                        </div>
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
-                            <div class="quantity-controls">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-item" onclick="removeFromCart(${item.id})">🗑️</button>
-                    </div>
-                `;
-                cartItems.innerHTML += cartItem;
-            });
-
-            cartTotal.textContent = 'Rp ' + total.toLocaleString('id-ID');
-        }
-
-        function updateQuantity(itemId, change) {
-            const item = cart.find(c => c.id === itemId);
-            item.quantity += change;
-            if (item.quantity <= 0) {
-                removeFromCart(itemId);
+            if (user) {
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
+                showNotification('success', 'Login Berhasil', 'Selamat datang ' + user.name + '!');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
             } else {
-                updateCartDisplay();
+                showNotification('error', 'Login Gagal', 'Email atau password salah');
             }
         }
 
-        function removeFromCart(itemId) {
-            cart = cart.filter(c => c.id !== itemId);
-            updateCartDisplay();
-        }
+        function handleSignup(event) {
+            event.preventDefault();
 
-        document.getElementById('cartIcon').addEventListener('click', function() {
-            document.getElementById('cartSidebar').classList.add('open');
-        });
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const phone = document.getElementById('signupPhone').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
 
-        document.getElementById('closeCart').addEventListener('click', function() {
-            document.getElementById('cartSidebar').classList.remove('open');
-        });
-
-        document.getElementById('checkoutBtn').addEventListener('click', function() {
-            if (cart.length === 0) {
-                alert('Keranjang masih kosong!');
+            if (!name || !email || !phone || !password || !confirmPassword) {
+                showNotification('error', 'Data Tidak Lengkap', 'Mohon isi semua field');
                 return;
             }
 
-            const orderSummary = document.getElementById('orderSummary');
-            let summaryHTML = '<h3>Ringkasan Pesanan</h3>';
-            let subtotal = 0;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('error', 'Email Tidak Valid', 'Format email salah');
+                return;
+            }
 
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                summaryHTML += `
-                    <div class="summary-row">
-                        <span>${item.name} (${item.quantity}x)</span>
-                        <span>Rp ${itemTotal.toLocaleString('id-ID')}</span>
-                    </div>
-                `;
-            });
+            if (phone.length < 10 || phone.length > 15) {
+                showNotification('error', 'Nomor HP Tidak Valid', 'Nomor HP harus 10-15 digit');
+                return;
+            }
 
-            const deliveryFee = 10000;
-            const total = subtotal + deliveryFee;
+            if (password.length < 6) {
+                showNotification('error', 'Password Terlalu Pendek', 'Password minimal 6 karakter');
+                return;
+            }
 
-            summaryHTML += `
-                <div class="summary-row"><span>Subtotal</span><span>Rp ${subtotal.toLocaleString('id-ID')}</span></div>
-                <div class="summary-row"><span>Biaya Kirim</span><span>Rp ${deliveryFee.toLocaleString('id-ID')}</span></div>
-                <div class="summary-row summary-total"><span>Total</span><span>Rp ${total.toLocaleString('id-ID')}</span></div>
-            `;
+            if (password !== confirmPassword) {
+                showNotification('error', 'Password Tidak Sama', 'Konfirmasi password tidak cocok');
+                return;
+            }
 
-            orderSummary.innerHTML = summaryHTML;
-            document.getElementById('checkoutModal').classList.add('active');
-            document.getElementById('cartSidebar').classList.remove('open');
-        });
+            const users = JSON.parse(localStorage.getItem('users')) || [];
 
-        document.getElementById('cancelCheckout').addEventListener('click', function() {
-            document.getElementById('checkoutModal').classList.remove('active');
-        });
+            if (users.some(u => u.email === email)) {
+                showNotification('error', 'Email Sudah Terdaftar', 'Gunakan email lain atau login');
+                return;
+            }
 
-        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const orderNumber = 'ORD-' + Date.now();
-            const orderData = {
-                orderNumber,
-                customerName: document.getElementById('customerName').value,
-                customerPhone: document.getElementById('customerPhone').value,
-                deliveryAddress: document.getElementById('deliveryAddress').value,
-                deliveryDate: document.getElementById('deliveryDate').value,
-                deliveryTime: document.getElementById('deliveryTime').value,
-                items: cart,
-                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 10000,
+            const newUser = {
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
                 createdAt: new Date().toISOString()
             };
 
-            let orders = JSON.parse(localStorage.getItem('orders') || '[]');
-            orders.push(orderData);
-            localStorage.setItem('orders', JSON.stringify(orders));
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('loggedInUser', JSON.stringify(newUser));
 
-            document.getElementById('orderNumber').textContent = 'No. Pesanan: ' + orderNumber;
-            document.getElementById('checkoutModal').classList.remove('active');
-            document.getElementById('successModal').classList.add('active');
+            showNotification('success', 'Registrasi Berhasil', 'Akun Anda telah dibuat!');
 
-            cart = [];
-            updateCartDisplay();
-            document.getElementById('checkoutForm').reset();
-        });
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
 
-        document.getElementById('closeSuccess').addEventListener('click', function() {
-            document.getElementById('successModal').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            if (confirm('Yakin ingin logout?')) {
-                localStorage.removeItem('loggedInUser');
-                window.location.href = 'login.html';
+        window.addEventListener('DOMContentLoaded', function() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                window.location.href = 'index.html';
             }
         });
-
-        const today = new Date();
-        today.setDate(today.getDate() + 1);
-        document.getElementById('deliveryDate').min = today.toISOString().split('T')[0];
-
-        displayMenu();
-        updateCartDisplay();
     </script>
 </body>
 </html>

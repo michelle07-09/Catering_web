@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodExpress - Catering Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header dengan Logout */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo h1 {
+            color: #f36d44;
+            font-size: 1.8em;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #f8f9fa;
+            border-radius: 20px;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .btn-logout {
+            padding: 10px 25px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+
+        .btn-logout:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #f36d44;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5em;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f36d44 0%, #e65c3b 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            font-size: 1em;
+        }
+
+        .search-box button {
+            padding: 18px 35px;
+            background: #f36d44;
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Category */
+        .category-section {
+            padding: 40px 0;
+            background: white;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid #eeeeee;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover {
+            border-color: #f36d44;
+            color: #f36d44;
+        }
+
+        .category-btn.active {
+            background: #f36d44;
+            color: white;
+            border-color: #f36d44;
+        }
+
+        /* Menu */
+        .menu-section {
+            padding: 60px 0;
+        }
+
+        .menu-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-card-content {
+            padding: 20px;
+        }
+
+        .menu-card-content h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .menu-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .menu-price {
+            font-size: 1.4em;
+            color: #f36d44;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .btn-order {
+            width: 100%;
+            padding: 12px;
+            background: #f36d44;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-order:hover {
+            background: #e65c3b;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -450px;
+            top: 0;
+            width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.3s;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #eeeeee;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border: 2px solid #eeeeee;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-price {
+            color: #f36d44;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: #f36d44;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 2px solid #eeeeee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 15px;
+            background: #f36d44;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 3000;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification.success {
+            border-left: 5px solid #27ae60;
+        }
+
+        .notification.error {
+            border-left: 5px solid #e74c3c;
+        }
+
+        .notification h3 {
+            margin-bottom: 5px;
+        }
+
+        .notification.success h3 {
+            color: #27ae60;
+        }
+
+        .notification.error h3 {
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .cart-sidebar { width: 100%; right: -100%; }
+            .user-info { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🍽️ FoodExpress</h1>
+                </div>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <span>👤</span>
+                        <span class="user-name" id="userName">User</span>
+                    </div>
+                    <button class="btn-logout" onclick="handleLogout()">Logout</button>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        🛒
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Pesan Makanan Favorit Anda</h1>
+            <p>Catering terbaik dengan kualitas premium</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari menu...">
+                <button onclick="searchMenu()">Cari</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-buttons">
+                <button class="category-btn active" onclick="filterMenu('semua')">Semua Menu</button>
+                <button class="category-btn" onclick="filterMenu('nasi-box')">Nasi Box</button>
+                <button class="category-btn" onclick="filterMenu('tumpeng')">Tumpeng</button>
+                <button class="category-btn" onclick="filterMenu('prasmanan')">Prasmanan</button>
+                <button class="category-btn" onclick="filterMenu('snack')">Snack</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="menu-section">
+        <div class="container">
+            <h2>Menu Pilihan Kami</h2>
+            <div class="menu-grid" id="menuGrid"></div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Keranjang Belanja</h3>
+            <button class="close-cart" onclick="closeCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Keranjang kosong</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">Rp 0</span>
+            </div>
+            <button class="btn-checkout" onclick="alert('Fitur checkout segera hadir!')">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <h3 id="notificationTitle">Notifikasi</h3>
+        <p id="notificationMessage">Pesan</p>
+    </div>
+
+    <script>
+        // Menu Data
+        const menuData = [
+            {
+                id: 1,
+                name: 'Paket Nasi Box Ayam',
+                category: 'nasi-box',
+                price: 25000,
+                description: 'Nasi putih, ayam goreng, sayur, sambal',
+                image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop'
+            },
+            {
+                id: 2,
+                name: 'Paket Nasi Box Ikan',
+                category: 'nasi-box',
+                price: 27000,
+                description: 'Nasi putih, ikan goreng, sayur, sambal',
+                image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop'
+            },
+            {
+                id: 3,
+                name: 'Paket Nasi Box Rendang',
+                category: 'nasi-box',
+                price: 30000,
+                description: 'Nasi putih, rendang sapi, sayur, sambal',
+                image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=300&fit=crop'
+            },
+            {
+                id: 4,
+                name: 'Paket Tumpeng Mini',
+                category: 'tumpeng',
+                price: 150000,
+                description: 'Nasi kuning, ayam, telur, urap, sambal',
+                image: 'https://images.unsplash.com/photo-1596040033229-a0b72ae48506?w=400&h=300&fit=crop'
+            },
+            {
+                id: 5,
+                name: 'Tumpeng Nasi Kuning',
+                category: 'tumpeng',
+                price: 200000,
+                description: 'Nasi kuning lengkap dengan lauk tradisional',
+                image: 'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=400&h=300&fit=crop'
+            },
+            {
+                id: 6,
+                name: 'Tumpeng Ulang Tahun',
+                category: 'tumpeng',
+                price: 250000,
+                description: 'Tumpeng spesial untuk acara ulang tahun',
+                image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=300&fit=crop'
+            },
+            {
+                id: 7,
+                name: 'Paket Prasmanan 20 Orang',
+                category: 'prasmanan',
+                price: 500000,
+                description: '4 menu nasi, 2 ayam, 2 sayur, buah',
+                image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop'
+            },
+            {
+                id: 8,
+                name: 'Paket Prasmanan 50 Orang',
+                category: 'prasmanan',
+                price: 1200000,
+                description: '6 menu nasi, 4 ayam, 3 sayur, dessert',
+                image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop'
+            },
+            {
+                id: 9,
+                name: 'Paket Prasmanan 100 Orang',
+                category: 'prasmanan',
+                price: 2300000,
+                description: 'Prasmanan lengkap untuk acara besar',
+                image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop'
+            },
+            {
+                id: 10,
+                name: 'Snack Box A',
+                category: 'snack',
+                price: 15000,
+                description: 'Risoles, pastel, lemper, kue',
+                image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop'
+            },
+            {
+                id: 11,
+                name: 'Snack Box B',
+                category: 'snack',
+                price: 18000,
+                description: 'Kroket, panada, sus, brownies',
+                image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=300&fit=crop'
+            },
+            {
+                id: 12,
+                name: 'Snack Box Premium',
+                category: 'snack',
+                price: 25000,
+                description: 'Snack premium dengan kue pilihan',
+                image: 'https://images.unsplash.com/photo-1562440499-64c9a74f0604?w=400&h=300&fit=crop'
+            }
+        ];
+
+        // Global State
+        let cart = [];
+
+        // Check Auth
+        function checkAuth() {
+            const user = localStorage.getItem('loggedInUser');
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            const userData = JSON.parse(user);
+            document.getElementById('userName').textContent = userData.name;
+        }
+
+        // LOGOUT FUNCTION
+        function handleLogout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('cart');
+                showNotification('success', 'Logout Berhasil', 'Sampai jumpa lagi!');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1000);
+            }
+        }
+
+        // Display Menu
+        function displayMenu(category = 'semua') {
+            const menuGrid = document.getElementById('menuGrid');
+            let filtered = category === 'semua' ? menuData : menuData.filter(m => m.category === category);
+            
+            menuGrid.innerHTML = filtered.map(item => `
+                <div class="menu-card">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="menu-card-content">
+                        <span class="menu-category">${getCategoryName(item.category)}</span>
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <div class="menu-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                        <button class="btn-order" onclick="addToCart(${item.id})">🛒 Pesan</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCategoryName(cat) {
+            const names = {
+                'nasi-box': 'Nasi Box',
+                'tumpeng': 'Tumpeng',
+                'prasmanan': 'Prasmanan',
+                'snack': 'Snack'
+            };
+            return names[cat] || cat;
+        }
+
+        // Filter Menu
+        function filterMenu(category) {
+            displayMenu(category);
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Search Menu
+        function searchMenu() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const menuGrid = document.getElementById('menuGrid');
+            const filtered = menuData.filter(m => 
+                m.name.toLowerCase().includes(query) || 
+                m.description.toLowerCase().includes(query)
+            );
+            
+            if (filtered.length === 0) {
+                menuGrid.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">Menu tidak ditemukan</p>';
+                return;
+            }
+            
+            menuGrid.innerHTML = filtered.map(item => `
+                <div class="menu-card">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="menu-card-content">
+                        <span class="menu-category">${getCategoryName(item.category)}</span>
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <div class="menu-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                        <button class="btn-order" onclick="addToCart(${item.id})">🛒 Pesan</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add to Cart
+        function addToCart(itemId) {
+            const item = menuData.find(m => m.id === itemId);
+            const existing = cart.find(c => c.id === itemId);
+            
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            showNotification('success', 'Ditambahkan!', item.name + ' ditambahkan ke keranjang');
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.textContent = total;
+            
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Keranjang kosong</p>';
+                cartTotal.textContent = 'Rp 0';
+                return;
+            }
+            
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" class="cart-item-image" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            <button class="remove-item" onclick="removeItem(${item.id})">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            cartTotal.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        }
+
+        // Update Quantity
+        function updateQuantity(itemId, change) {
+            const item = cart.find(c => c.id === itemId);
+            if (!item) return;
+            
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                removeItem(itemId);
+                return;
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        // Remove Item
+        function removeItem(itemId) {
+            cart = cart.filter(c => c.id !== itemId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            showNotification('success', 'Dihapus', 'Item berhasil dihapus');
+        }
+
+        // Toggle Cart
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+        }
+
+        // Close Cart
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('open');
+        }
+
+        // Show Notification
+        function showNotification(type, title, message) {
+            const notif = document.getElementById('notification');
+            notif.className = 'notification show ' + type;
+            document.getElementById('notificationTitle').textContent = title;
+            document.getElementById('notificationMessage').textContent = message;
+            
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
+            displayMenu();
+            updateCartUI();
+        });
+
+        // Search on Enter
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchMenu();
+        });
+    </script>
+</body>
+</html>

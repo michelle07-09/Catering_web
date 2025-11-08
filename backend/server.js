@@ -1,9 +1,24 @@
+// --- server.js ---
+
+const express = require('express');
+const cors = require('cors'); 
+// ❗ BARIS INI HANYA BOLEH ADA SATU KALI DI SELURUH FILE ❗
+const app = express(); 
+
+// URL Frontend Anda di Netlify
+const frontendDomain = 'https://musical-lokum-072f1c.netlify.app';
+
+// Konfigurasi CORS
+const corsOptions = {
+  origin: frontendDomain,
+  optionsSuccessStatus: 200 
+};
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs').promises;
 
-const app = express();
+
 const PORT = process.env.PORT || 3000;
 
 // Middleware

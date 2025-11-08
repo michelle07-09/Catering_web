@@ -1,18 +1,15 @@
 // =======================================================================
-// === BAGIAN INI ANTI-ERROR (PASTIKAN TIDAK ADA DUPLIKASI DI SINI) ===
+// === BAGIAN INISIALISASI DAN MIDDELEWARE (ANTI-ERROR) ===
 // =======================================================================
 
 const express = require('express');
-const cors = require('cors'); 
-// Definisi app HANYA SATU KALI
+const cors = require('require'); 
 const app = express(); 
 
-// 1. URL Frontend Anda di Netlify (UNTUK CORS ORIGIN)
+// Variabel Domain Frontend Anda (Netlify) untuk CORS
 const frontendDomain = 'https://musical-lokum-072f1c.netlify.app';
 
-// Konfigurasi CORS
 const corsOptions = {
-  // Hanya izinkan domain Netlify ini
   origin: frontendDomain,
   optionsSuccessStatus: 200 
 };
@@ -21,34 +18,37 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Gunakan port dari Render (process.env.PORT) atau port cadangan 3000
+// Gunakan port dari Render (process.env.PORT) atau port cadangan
 const PORT = process.env.PORT || 3000; 
 
 // =======================================================================
-// === TEMPATKAN SEMUA KODE ROUTE (API LOGIC) ANDA DI BAWAH GARIS INI ===
+// === KODE ROUTE API ASLI (TEMPATKAN KODE ANDA DI SINI) ===
 // =======================================================================
 
-// ❗ TEMPELKAN SEMUA KODE ROUTE (app.get, app.post, app.put, dll.) ASLI ANDA DI SINI
-// 
-// CONTOH:
-// app.get('/api/menu', (req, res) => {
-//     // Logic untuk mendapatkan daftar menu
-//     res.json(menu);
-// });
-//
-// app.post('/api/login', (req, res) => {
-//     // Logic untuk proses login
-//     // ...
-// });
+// --- ROUTE DASAR (Fixes "Cannot GET /") ---
+app.get('/', (req, res) => {
+    res.send('FoodExpress API is running successfully and CORS is configured!');
+});
+
+// ❗ TEMPELKAN SEMUA KODE ROUTE (app.get, app.post, dll.) ASLI ANDA DI BAWAH INI
+
+// Contoh Route Login/Menu:
+/*
+app.post('/api/login', (req, res) => {
+    // Logic login Anda
+});
+
+app.get('/api/menu', (req, res) => {
+    // Logic mendapatkan menu
+});
+*/
 
 // JANGAN SAMPAI ADA BARIS const express = require('express'); YANG TERBAWA DI SINI!
 
 // =======================================================================
-// === BAGIAN INI UNTUK MENJALANKAN SERVER (PASTIKAN DI AKHIR FILE) ===
+// === BAGIAN LISTEN SERVER (AKHIR FILE) ===
 // =======================================================================
 
 app.listen(PORT, () => {
     console.log(`Server berjalan di port ${PORT}`);
 });
-
-// =======================================================================

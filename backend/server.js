@@ -3,7 +3,7 @@
 // =======================================================================
 
 const express = require('express');
-const cors = require('require'); 
+const cors = require('cors');
 const app = express(); 
 
 // Variabel Domain Frontend Anda (Netlify) untuk CORS
